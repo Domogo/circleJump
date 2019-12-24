@@ -19,14 +19,14 @@ func jump():
 
 func _on_Jumper_area_entered(area):
 	target = area
-	target.get_node("Pivot").rotation = (position - target.position).angle()
 	velocity = Vector2.ZERO
 	emit_signal("captured", area)
 
 func _physics_process(delta):
 	if target:
 		transform = target.orbit_position.global_transform
-		trail.remove_point(0)
+		if trail.points:
+			trail.remove_point(0)
 	else:
 		position += velocity * delta
 		if trail.points.size() > trail_length:
