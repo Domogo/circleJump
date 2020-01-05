@@ -81,7 +81,9 @@ tracks/1/keys = {
 size = 64
 font_data = ExtResource( 4 )
 
-[node name="Circle" type="Area2D"]
+[node name="Circle" type="Area2D" groups=[
+"circles",
+]]
 position = Vector2( 244.189, 503.368 )
 script = ExtResource( 1 )
 

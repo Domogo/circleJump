@@ -32,4 +32,6 @@ func _on_Jumper_captured(object):
 	call_deferred("spawn_circle")
 
 func _on_Jumper_died():
+	get_tree().call_group("circles", "implode")
+	$Screens.game_over()
 

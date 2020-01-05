@@ -35,10 +35,10 @@ func _physics_process(delta):
 		trail.add_point(position)
 
 func die():
-	emit_signal("died")
 	target = null
 	queue_free()
 
-func on_VisibilityNotifier2D_screen_exited():
+func _on_VisibilityNotifier2D_screen_exited():
 	if !target:
+		emit_signal("died")
 		die()
