@@ -1,6 +1,7 @@
 extends Area2D
 
 signal captured
+signal died
 
 onready var trail = $Trail/Points
 var velocity = Vector2(100, 0)
@@ -32,3 +33,12 @@ func _physics_process(delta):
 		if trail.points.size() > trail_length:
 			trail.remove_point(0)
 		trail.add_point(position)
+
+func die():
+	emit_signal("died")
+	target = null
+	queue_free()
+
+func on_VisibilityNotifier2D_screen_exited():
+	if !target:
+		die()

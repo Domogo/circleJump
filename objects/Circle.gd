@@ -36,11 +36,16 @@ func _process(delta):
 	$Pivot.rotation += rotation_speed * delta
 	if mode == MODES.LIMITED and jumper:
 		check_orbits()
+		update()
 
 func check_orbits():
 	if abs($Pivot.rotation - orbit_start) > 2 * PI:
 		current_orbits -= 1
 		$Label.set_text(str(current_orbits))
+		if current_orbits <= 0:
+			jumper.die()
+			jumper = null
+			implode()
 		orbit_start = $Pivot.rotation
 
 func implode():
@@ -53,3 +58,20 @@ func capture(_jumper):
 	$AnimationPlayer.play("capture")
 	$Pivot.rotation = (jumper.position - position).angle()
 	orbit_start = $Pivot.rotation
+
+func _draw():
+    if jumper:
+        var r = ((radius - 50) / num_orbits) * (1 + num_orbits - current_orbits)
+        draw_circle_arc_poly(Vector2.ZERO, r, orbit_start + PI/2,
+                            $Pivot.rotation + PI/2, Color(1, 0, 0))
+
+func draw_circle_arc_poly(center, draw_radius, angle_from, angle_to, color):
+    var nb_points = 32
+    var points_arc = PoolVector2Array()
+    points_arc.push_back(center)
+    var colors = PoolColorArray([color])
+
+    for i in range(nb_points + 1):
+        var angle_point = angle_from + i * (angle_to - angle_from) / nb_points - PI/2
+        points_arc.push_back(center + Vector2(cos(angle_point), sin(angle_point)) * draw_radius)
+    draw_polygon(points_arc, colors)
