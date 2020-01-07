@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://objects/Circle.gd" type="Script" id=1]
 [ext_resource path="res://objects/color.shader" type="Shader" id=2]
 [ext_resource path="res://assets/images/circle1_n.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/audio/89.ogg" type="AudioStream" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -12,7 +13,7 @@ shader_param/color = Color( 0.266667, 1, 0, 1 )
 [sub_resource type="CircleShape2D" id=2]
 radius = 128.501
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=6]
 resource_name = "capture"
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteEffect:visible")
@@ -105,7 +106,7 @@ shape = SubResource( 2 )
 [node name="OrbitPosition" type="Position2D" parent="Pivot"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/capture = SubResource( 3 )
+anims/capture = SubResource( 6 )
 anims/implode = SubResource( 4 )
 
 [node name="Label" type="Label" parent="."]
@@ -121,3 +122,6 @@ custom_fonts/font = SubResource( 5 )
 text = "1"
 align = 1
 valign = 1
+
+[node name="Beep" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
