@@ -33,6 +33,7 @@ func init(_position, level=1):
 	var img_size = $Sprite.texture.get_size().x / 2
 	$Sprite.scale = Vector2(1, 1) * radius / img_size
 	orbit_position.position.x = radius + 25
+	rotation_speed *= pow(-1, randi() % 2)
 	set_tween()
 
 func set_mode(_mode):
