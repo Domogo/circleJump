@@ -36,7 +36,7 @@ func spawn_circle(_position=null):
 		var y = rand_range(-500, -400)
 		_position = player.target.position + Vector2(x, y)
 	add_child(c)
-	c.init(_position)
+	c.init(_position, level)
 
 func _on_Jumper_captured(object):
 	$Camera2D.position = object.position
