@@ -2,18 +2,20 @@
 
 [ext_resource path="res://UI/HUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://assets/fonts/xolonium_64.tres" type="DynamicFont" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 64
 font_data = ExtResource( 2 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "init"
+[sub_resource type="Animation" id=4]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Message:custom_fonts/font:size")
@@ -40,8 +42,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "show_message"
+[sub_resource type="Animation" id=5]
 length = 0.75
 tracks/0/type = "value"
 tracks/0/path = NodePath("Message:visible")
@@ -60,7 +61,7 @@ tracks/1/path = NodePath("Message:custom_fonts/font:size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/keys = {
 "times": PoolRealArray( 0, 0.75 ),
 "transitions": PoolRealArray( 1, 1 ),
@@ -101,22 +102,22 @@ margin_bottom = 98.0
 alignment = 2
 
 [node name="Label" type="Label" parent="ScoreBox/HBoxContainer"]
-margin_left = 195.0
-margin_right = 301.0
+margin_left = 246.0
+margin_right = 352.0
 margin_bottom = 78.0
 size_flags_vertical = 5
 custom_fonts/font = SubResource( 1 )
 text = "Score:"
 
 [node name="Score" type="Label" parent="ScoreBox/HBoxContainer"]
-margin_left = 305.0
+margin_left = 356.0
 margin_right = 440.0
 margin_bottom = 78.0
-custom_fonts/font = ExtResource( 3 )
+size_flags_vertical = 5
+custom_fonts/font = SubResource( 2 )
 text = "100"
 
 [node name="Message" type="Label" parent="."]
-visible = false
 modulate = Color( 1, 1, 1, 0 )
 anchor_top = 0.5
 anchor_right = 1.0
@@ -124,12 +125,12 @@ anchor_bottom = 0.5
 margin_top = -39.0
 margin_bottom = 39.0
 grow_vertical = 2
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "Message"
 align = 1
 valign = 1
 clip_text = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/init = SubResource( 3 )
-anims/show_message = SubResource( 4 )
+anims/init = SubResource( 4 )
+anims/show_message = SubResource( 5 )
