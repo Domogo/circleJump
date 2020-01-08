@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://UI/HUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
@@ -15,7 +15,8 @@ font_data = ExtResource( 2 )
 size = 64
 font_data = ExtResource( 2 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=7]
+resource_name = "init"
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Message:custom_fonts/font:size")
@@ -81,6 +82,103 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
+[sub_resource type="Animation" id=6]
+resource_name = "bonus"
+length = 0.15
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("BonusBox/Bonus:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.07, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BonusBox/Bonus:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.07, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.501961, 0.921569, 0.564706, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.75
+tracks/0/type = "value"
+tracks/0/path = NodePath("Message:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Message:custom_fonts/font:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.75 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 64, 200 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Message:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.75 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "bonus"
+length = 0.15
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("BonusBox/Bonus:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.07, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BonusBox/Bonus:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.07, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.501961, 0.921569, 0.564706, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
 
@@ -117,8 +215,27 @@ size_flags_vertical = 5
 custom_fonts/font = SubResource( 2 )
 text = "100"
 
+[node name="BonusBox" type="MarginContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 89.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="Bonus" type="Label" parent="BonusBox"]
+modulate = Color( 0.688725, 0.95098, 0.727941, 1 )
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 460.0
+margin_bottom = 69.0
+rect_scale = Vector2( 1.125, 1.125 )
+size_flags_vertical = 5
+custom_fonts/font = SubResource( 2 )
+text = "1x"
+
 [node name="Message" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0.866667 )
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -131,6 +248,14 @@ align = 1
 valign = 1
 clip_text = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/init = SubResource( 4 )
+[node name="MessageAnimation" type="AnimationPlayer" parent="."]
+anims/init = SubResource( 7 )
 anims/show_message = SubResource( 5 )
+
+[node name="ScoreAnimation" type="AnimationPlayer" parent="."]
+anims/bonus = SubResource( 6 )
+anims/init = SubResource( 7 )
+anims/show_message = SubResource( 8 )
+
+[node name="BonusAnimation" type="AnimationPlayer" parent="."]
+anims/bonus = SubResource( 9 )
