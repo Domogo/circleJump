@@ -6,6 +6,7 @@ var Jumper = preload("res://objects/Jumper.tscn")
 var player
 var score = 0 setget set_score
 var highscore = 0
+var new_highscore = false
 var level = 0
 
 func _ready():
@@ -18,6 +19,7 @@ func new_game():
 	# set_score(0)
 	self.score = 0
 	level = 0
+	new_highscore = false
 	$HUD.update_score(score)
 	$Camera2D.position = $StartPosition.position
 	player = Jumper.instance()
@@ -48,6 +50,9 @@ func _on_Jumper_captured(object):
 
 func set_score(value):
 	score = value
+	if score > highscroe and !new_highscore:
+		$HUD.show_message("New records!")
+		new_highscore = True
 	$HUD.update_score(score)
 	if score > 0 and score % settings.circles_per_level == 0:
 		level += 1

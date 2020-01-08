@@ -9,10 +9,10 @@ layer = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.0745098, 0.0745098, 0.0901961, 1 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-modulate = Color( 1, 1, 1, 0.439216 )
+modulate = Color( 1, 1, 1, 0.890196 )
 position = Vector2( 240, 100 )
 rotation = 1.5708
 amount = 4
