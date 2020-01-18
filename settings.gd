@@ -1,11 +1,13 @@
 extends Node
 
+# warning-ignore:unused_class_variable
 var score_file = "user://highscore.save"
 # settings save file - to remember settings
 var settings_file = "user://settings.save"
 var enable_sound = true
 var enable_music = true
 
+# warning-ignore:unused_class_variable
 var circles_per_level = 5
 
 var color_schemes = {
@@ -35,6 +37,7 @@ var color_schemes = {
 	}
 }
 
+# warning-ignore:unused_class_variable
 var theme = color_schemes["NEON1"]
 
 static func rand_weighted(weights):

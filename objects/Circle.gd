@@ -104,7 +104,7 @@ func draw_circle_arc_poly(center, draw_radius, angle_from, angle_to, color):
         points_arc.push_back(center + Vector2(cos(angle_point), sin(angle_point)) * draw_radius)
     draw_polygon(points_arc, colors)
 
-func set_tween(object=null, key=null):
+func set_tween():
 	if move_range == 0:
 		return
 	move_range *= -1

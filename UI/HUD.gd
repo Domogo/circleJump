@@ -1,7 +1,5 @@
 extends CanvasLayer
 
-var score = 0
-
 func show_message(text):
 	$Message.text = text
 	$MessageAnimation.play("show_message")
